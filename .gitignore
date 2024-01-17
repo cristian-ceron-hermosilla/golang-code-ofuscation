@@ -7,6 +7,8 @@
 *.dll
 *.so
 *.dylib
+go-source-ofusc
+go-source-dic
 
 # Test binary, built with `go test -c`
 *.test

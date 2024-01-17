@@ -1,4 +1,4 @@
-module go.ofusc/source-ofusc
+module go.ofusc/go-source-ofusc
 
 go 1.21
 
