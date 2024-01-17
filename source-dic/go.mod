@@ -1,4 +1,4 @@
-module test.ofusc/main
+module go.ofusc/go-source-dic
 
 go 1.21
 

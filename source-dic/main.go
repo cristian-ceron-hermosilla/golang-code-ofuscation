@@ -4,17 +4,13 @@ import (
 	"fmt"
 	"go/ast"
 	"go/parser"
-	"go/printer"
 	"go/token"
 	"io/ioutil"
-	"math/rand"
 	"os"
 	"strconv"
 	"strings"
-	"time"
 )
 
-var names = make(map[string]string)
 var reservedWords []string
 
 func main() {
@@ -39,30 +35,20 @@ func main() {
 		reservedWords = append(reservedWords, importPath)
 	}
 
-	// Cambiar los nombres de las variables y funciones
+	// Recorrer el AST del archivo y agregar los identificadores a la lista de palabras reservadas
 	ast.Inspect(file, func(n ast.Node) bool {
 		switch x := n.(type) {
 		case *ast.Ident:
-			// Cambiar el nombre de la variable o función
+			// Agregar el identificador a la lista de palabras reservadas
 			if !isReservedWord(x.Name) {
-				if _, ok := names[x.Name]; !ok {
-					names[x.Name] = randomName()
-				}
-				x.Name = names[x.Name]
+				reservedWords = append(reservedWords, x.Name)
 			}
 		}
 		return true
 	})
 
-	// Escribir el archivo fuente modificado en un nuevo archivo
-	f, err := os.Create("newMain.go")
-	if err != nil {
-		fmt.Println(err)
-		os.Exit(1)
-	}
-	defer f.Close()
-
-	err = printer.Fprint(f, fset, file)
+	// Escribir la lista de palabras reservadas en el archivo
+	err = writeReservedWordsToFile("reservedWords.txt")
 	if err != nil {
 		fmt.Println(err)
 		os.Exit(1)
@@ -79,6 +65,15 @@ func readReservedWordsFromFile(filename string) ([]string, error) {
 	return lines, nil
 }
 
+func writeReservedWordsToFile(filename string) error {
+	content := strings.Join(reservedWords, "\n")
+	err := ioutil.WriteFile(filename, []byte(content), 0644)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
 func isReservedWord(word string) bool {
 	for _, reservedWord := range reservedWords {
 		if word == reservedWord {
@@ -86,14 +81,4 @@ func isReservedWord(word string) bool {
 		}
 	}
 	return false
-}
-
-func randomName() string {
-	rand.Seed(time.Now().UnixNano())
-	letters := []rune("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ")
-	b := make([]rune, 8)
-	for i := range b {
-		b[i] = letters[rand.Intn(len(letters))]
-	}
-	return string(b)
 }

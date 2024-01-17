@@ -7,8 +7,13 @@
 *.dll
 *.so
 *.dylib
+
+
+# Evitamos versionar el binario.
 go-source-ofusc
+go-source-ofusc.exe
 go-source-dic
+go-source-dic.exe
 
 # Test binary, built with `go test -c`
 *.test
