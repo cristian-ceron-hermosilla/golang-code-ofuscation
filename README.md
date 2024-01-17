@@ -3,14 +3,17 @@ Ofuscación de codigo fuente Golang
 
 Si estás codificando una aplicación que quieres empaquetar en un binario (ejecutable) para comercializar y/o distribuir para hacerte millonario :-) y te da PAVOR que Micro$oft o Google te roben tu codigo, quizas esto te pueda interesar.
 
-El objetivo de esta "utilidad" es ayudarte a extremar las medidas para ayudarte a evitar 
-que tu código fuente (y propiedad intelectual) se vea "expuesto" de alguna forma o derechamente, que personas no autorizadas por ti, lo pudiesen ver, copiar, piratear y robar (suena fuerte pero, la historia está llena de millonarios que han robado el producto de otros).
+El objetivo de esta utilidad es ayudarte a extremar un poco las medidas de seguridad de tu código fuente (y propiedad intelectual) para evitar que se vea "expuesto" de alguna forma o derechamente, que personas no autorizadas por ti, lo pudiesen ver, copiar, piratear o robar (suena fuerte pero, la historia está llena de "exitosos" que han robado el producto del esfuerzo y creatividad de otros).
 
-Es MUY importante que sepas que, es posible ofuscar tu codigo golang PERO, aca tenemos dos sorpresillas:
+Es MUY importante que sepas que es posible ocultar (ofuscar) tu codigo fuente golang PERO, aca tenemos dos sorpresillas:
 
-1.- El codigo factible de ofuscar es el codigo binario (no el codigo fuente utilizado para generar el binarios) y, 
+1.- El codigo factible de ofuscar (con una libreria o utilidad) es el codigo binario (no el codigo fuente utilizado para generar el binario) y, 
 
-2.- (aca viene la otra "sorpresilla) Tu valioso codigo fuerte PODRIA SER INCLUIDO en el binario (como te quedó el ojo? :-)
+        garble build .
+
+2.- (aca viene la otra "sorpresilla) Tu valioso y apreciado codigo fuente PODRIA SER INCLUIDO en el binario (como te quedó el ojo? :-)
+
+        go build -a -buildmode=pie main.go
 
 Claro, claro, podría ser incluido en el binario utilizando "explicitamente" un parametro de la compilación PERO, ¿estas 100% seguro que el codigo fuente no se incluye en el binario, incluso si no lo indicas?.
 
