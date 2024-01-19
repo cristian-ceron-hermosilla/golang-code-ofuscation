@@ -1,10 +1,14 @@
 # golang-code-ofuscation
 Ofuscación de codigo fuente Golang
 
-Si estás codificando una aplicación que quieres empaquetar en un binario (ejecutable) para comercializar y/o distribuir para hacerte millonario :-) y te da PAVOR que Micro$oft o Google te roben tu codigo, quizas esto te pueda interesar.
+Si estás codificando una aplicación con Golang que quieres empaquetar en un binario (ejecutable) para comercializar y/o distribuir para hacerte millonario :-) y te complica la posibilidad que tu codigo fuente quede expuesto, quizas esto te pueda interesar.
 
-El objetivo de esta utilidad es ayudarte a extremar un poco las medidas de seguridad de tu código fuente (y propiedad intelectual) para evitar que se vea "expuesto" de alguna forma o derechamente, que personas no autorizadas por ti, lo pudiesen ver, copiar, piratear o robar (suena fuerte pero, la historia está llena de "exitosos" que han robado el producto del esfuerzo y creatividad de otros).
+Si, dentro de otras razones, elegiste Golang debido a que creias que el binario que se genera a partir de tu codigo fuente, protege al 100% tu propiedad intelectual (y tu esfuerzo) ya que, al distribuir tu app en codigo binario la hace invulnerable, lamento informarte que aun asi existe el riesgo que tu codigo fuente pueda quedar expuesto. Acá te explico porque generar un producto en codigo binario no te protege y como lo intenté resolver con el codigo de este repositorio.
 
+Acá no trato los mecanismos para evitar que te copien tu App, eso lo debes resolver tu mediante algoritmos que incorpores en tu producto, generación de claves de autorización, mecanismos legales, estrategias comerciales, todas las anteriores o alguna combinacion de estas; Este no es el tema de este repositorio.
+
+Lo que publico acá solo permite utilizar un mecanismo que oculta (ofusca) algunas caracteristicas de tu codigo fuente para que, en caso de ser expuesto explicita o implicitamente en el archivo binario que distribuiras, sea complejo de entender o interpretar por terceros.
+ 
 Es MUY importante que sepas que es posible ocultar (ofuscar) tu codigo fuente golang PERO, aca tenemos dos sorpresillas:
 
 1.- El codigo factible de ofuscar (con una libreria o utilidad) es el codigo binario (no el codigo fuente utilizado para generar el binario) y, 
