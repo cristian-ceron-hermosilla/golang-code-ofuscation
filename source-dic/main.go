@@ -5,8 +5,10 @@ import (
 	"go/ast"
 	"go/parser"
 	"go/token"
+	"io/fs"
 	"io/ioutil"
 	"os"
+	"path/filepath"
 	"strconv"
 	"strings"
 )
@@ -14,16 +16,45 @@ import (
 var reservedWords []string
 
 func main() {
+
+	if len(os.Args) != 1 {
+		println("Usage: go run main.go <source_folder>")
+		return
+	}
+
+	sourceFolder := os.Args[1]
+
+	err := filepath.Walk(sourceFolder, func(path string, info fs.FileInfo, err error) error {
+		if err != nil {
+			return err
+		}
+
+		if strings.HasSuffix(path, ".go") {
+			genDictionary(path)
+			return nil
+		}
+		return nil
+	})
+
+	if err != nil {
+		println("Error:", err.Error())
+	}
+}
+
+func genDictionary(sourceFile string) {
+
+	println("Inspeccionando fuente ...", sourceFile)
+
 	// Abrir el archivo fuente en formato texto
 	fset := token.NewFileSet()
-	file, err := parser.ParseFile(fset, "main.go", nil, parser.ParseComments)
+	file, err := parser.ParseFile(fset, sourceFile, nil, parser.ParseComments)
 	if err != nil {
 		fmt.Println(err)
 		os.Exit(1)
 	}
 
 	// Leer la lista de palabras reservadas y nombres de librerías desde un archivo
-	reservedWords, err = readReservedWordsFromFile("reservedWords.txt")
+	reservedWords, err = readReservedWordsFromFile("../reservedWords.txt")
 	if err != nil {
 		fmt.Println(err)
 		os.Exit(1)
@@ -48,7 +79,7 @@ func main() {
 	})
 
 	// Escribir la lista de palabras reservadas en el archivo
-	err = writeReservedWordsToFile("reservedWords.txt")
+	err = writeReservedWordsToFile("../reservedWords.txt")
 	if err != nil {
 		fmt.Println(err)
 		os.Exit(1)
