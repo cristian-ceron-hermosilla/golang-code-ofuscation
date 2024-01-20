@@ -1,5 +1,7 @@
 # golang-code-ofuscation
-Ofuscación de codigo fuente Golang para ambiente Windows, Linux, Unix y Mac.
+Ofuscación de codigo fuente Golang para ambiente Linux, Unix y Mac.
+
+Proximamente, agregare las correciones del build para Windows. Sin embargo, si estas construyendo algún producto o solución de software que pretender distribuir y comercializar, te sugiero instalar una maquina Linux en VirtualBox y restringir al maximo la seguridad de tu VM para desarrollo.  
 
 ## source-ofus
 Esta carpeta contiene una utilidad que permiten "ofuscar" el codigo fuente Golang.
