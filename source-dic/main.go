@@ -17,20 +17,26 @@ var reservedWords []string
 
 func main() {
 
-	if len(os.Args) != 1 {
+	homeDir, err := os.UserHomeDir()
+	if err != nil {
+		fmt.Printf("Error al obtener el directorio de inicio del usuario: %v\n", err)
+		return
+	}
+
+	if len(os.Args) != 2 {
 		println("Usage: go run main.go <source_folder>")
 		return
 	}
 
 	sourceFolder := os.Args[1]
 
-	err := filepath.Walk(sourceFolder, func(path string, info fs.FileInfo, err error) error {
+	err = filepath.Walk(sourceFolder, func(path string, info fs.FileInfo, err error) error {
 		if err != nil {
 			return err
 		}
 
 		if strings.HasSuffix(path, ".go") {
-			genDictionary(path)
+			genDictionary(homeDir, path)
 			return nil
 		}
 		return nil
@@ -41,7 +47,7 @@ func main() {
 	}
 }
 
-func genDictionary(sourceFile string) {
+func genDictionary(homeDir string, sourceFile string) {
 
 	println("Inspeccionando fuente ...", sourceFile)
 
@@ -54,7 +60,7 @@ func genDictionary(sourceFile string) {
 	}
 
 	// Leer la lista de palabras reservadas y nombres de librerías desde un archivo
-	reservedWords, err = readReservedWordsFromFile("../reservedWords.txt")
+	reservedWords, err = readReservedWordsFromFile(homeDir + "/reservedWords.txt")
 	if err != nil {
 		fmt.Println(err)
 		os.Exit(1)
@@ -79,7 +85,7 @@ func genDictionary(sourceFile string) {
 	})
 
 	// Escribir la lista de palabras reservadas en el archivo
-	err = writeReservedWordsToFile("../reservedWords.txt")
+	err = writeReservedWordsToFile(homeDir + "/reservedWords.txt")
 	if err != nil {
 		fmt.Println(err)
 		os.Exit(1)

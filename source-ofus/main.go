@@ -26,10 +26,16 @@ func main() {
 		return
 	}
 
+	homeDir, err := os.UserHomeDir()
+	if err != nil {
+		fmt.Printf("Error al obtener el directorio de inicio del usuario: %v\n", err)
+		return
+	}
+
 	sourceFolder := os.Args[1]
 	destinationFolder := os.Args[2]
 
-	err := filepath.Walk(sourceFolder, func(path string, info fs.FileInfo, err error) error {
+	err = filepath.Walk(sourceFolder, func(path string, info fs.FileInfo, err error) error {
 		if err != nil {
 			return err
 		}
@@ -46,7 +52,7 @@ func main() {
 		}
 
 		if strings.HasSuffix(path, ".go") {
-			ofusca(path, destPath)
+			ofusca(homeDir, path, destPath)
 			return nil
 		}
 
@@ -85,7 +91,7 @@ func copyFile(src, dst string) error {
 	return err
 }
 
-func ofusca(sourceFile string, destFile string) {
+func ofusca(homeDir string, sourceFile string, destFile string) {
 	// Abrir el archivo fuente en formato texto
 	fset := token.NewFileSet()
 	file, err := parser.ParseFile(fset, sourceFile, nil, parser.ParseComments)
@@ -98,7 +104,7 @@ func ofusca(sourceFile string, destFile string) {
 	file.Comments = []*ast.CommentGroup{}
 
 	// Leer la lista de palabras reservadas y nombres de librerías desde un archivo
-	reservedWords, err = readReservedWordsFromFile("../reservedWords.txt")
+	reservedWords, err = readReservedWordsFromFile(homeDir + "/reservedWords.txt")
 	if err != nil {
 		fmt.Println(err)
 		os.Exit(1)
