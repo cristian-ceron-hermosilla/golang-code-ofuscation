@@ -14,7 +14,13 @@ Esta carpeta contiene el código de un programa auxiliar, cuyo objetivo es agreg
 ## Como trabaja el programa "go-source-ofus"
 Una vez compilado con "_build.sh" (linux/unix/mac) o "_build.bat" (windows), el programa "go-source-ofus" modifica TODOS los fuentes .go que se encuenten en tu carpeta de trabajo u "origen" en una carpeta de compilación o "destino".
 
-     go-source-ofus ./proyecto-de-trajajo ./proyecto-ofuscado
+     go-source-ofus ./proyecto-de-trajajo <./proyecto-ofuscado>
+
+Si no colocas el 2do. parametro (una carpeta destino) o, por error, colocas la misma carpeta en ambos parametros se generará una carpeta "proyecto-de-trajajo-ofus".
+
+Como asumimos que, si tu proyecto es hiper-ultra secreto, como todo proyecto que pretende comercializarse; Imaginamos que no pretenderas subirlo a Github en un repo privado ni mucho menos publico (yo tampoco lo haría), "go-source-ofus" antes de hacer lo que debe hacer, realizará un respaldo de tus fuentes en la carpeta ./backup/<fecha>/proyecto-de-trabajo/<timestamp>.
+
+Te sugiero mantener SIEMPRE tu VM desconectada de la red e internet, salvo en los casos en que requieras actualizar o agregar dependencias a tu proyecto, tomando todos los resguardos necesarios con tu codigo y te sugiero utilizar fuentes ofuscados para agregar dependencias.
 
 ## Mantención del diccionario
 Al compilarse los binarios, idealmente con el batch "_build" que corresponda, el diccionario "reservedWords.txt" se moverá a la carpeta del usuario $HOME (linux/unix/mac) o %USERPROFILE% (windows).
