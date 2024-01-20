@@ -170,8 +170,8 @@ func isReservedWord(word string) bool {
 
 func randomName() string {
 	rand.Seed(time.Now().UnixNano())
-	letters := []rune("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_")
-	b := make([]rune, 28)
+	letters := []rune("___abcdefghijklmnopqrstuvwxyz____ABCDEFGHIJKLMNOPQRSTUVWXYZ____0123456789_____")
+	b := make([]rune, 58)
 	for i := range b {
 		b[i] = letters[rand.Intn(len(letters))]
 	}
