@@ -111,6 +111,9 @@ Como asumimos que, si tu proyecto es hiper-ultra secreto, como todo proyecto que
 
 Te sugiero mantener SIEMPRE tu VM desconectada de la red e internet, salvo en los casos en que requieras actualizar o agregar dependencias a tu proyecto, tomando todos los resguardos necesarios con tu codigo y te sugiero utilizar fuentes ofuscados para agregar dependencias.
 
+## ¿Al agregar tantas letras y simbolos, el binario será mas grande?
+No. El proceso de compilaciòn traduce los identificadores a direcciones de memoria.
+
 ## Mantención del diccionario
 Al compilarse los binarios, idealmente con el batch "_build" que corresponda, el diccionario "reservedWords.txt" se moverá a la carpeta del usuario $HOME (linux/unix/mac) o %USERPROFILE% (windows).
 
