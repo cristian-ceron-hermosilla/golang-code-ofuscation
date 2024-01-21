@@ -1,7 +1,7 @@
 # golang-code-ofuscation
 Ofuscación de código fuente Golang para ambiente Linux, Unix y Mac.
 
-Próximamente, agregaré las correciones del build para Windows. Sin embargo, si estás construyendo algún producto o solución de software que pretendas distribuir y comercializar, te sugiero instalar una maquina Linux en VirtualBox y restringir al máximo la seguridad de tu VM para desarrollo.  
+Próximamente, agregaré las correciones del build para Windows. Sin embargo, si estás construyendo algún producto o solución de software que pretendas distribuir y comercializar, te sugiero instalar una maquina Linux en VirtualBox e investigar como aumentar al máximo la seguridad de la VM como ambiente de desarrollo (firewall, servicios y usuarios innecesarios, encriptar el disco, etc).  
 
 > **Atención:** Antes de compilar y ejecutar los build, por favor revisa y trata de leer los programas y los batch.
 (Si no te sientes comodo o seguro, no los utilices)
