@@ -113,13 +113,15 @@ Al compilarse los binarios, idealmente con el batch "_build" que corresponda, el
 
 Es posible que el programa "go-source-dic" o "go-source-dic.exe" segun corresponda, agregue al diccionario identificadores (variables o funciones) que no deban omitirse en el proceso de ofuscación; Puedes quitar del diccionario los identificadores que no desees omitir.
 
-## ¿Porque DEBERIA ofuscar mi codigo golang sí, al compilarlo se genera un binario en codigo de maquina?
+## ¿Porque DEBERÍA ofuscar mi código en go, sí al compilarlo se genera un binario en código solo legible por la máquina?
 
-DEBERIAS OFUSCARLO sí estas construyendo o distrubuyendo un programa que pretendes comercializar ya que; (uno) Es TU PROPIEDAD INTELECTUAL y (dos), SI existe la posibilidad que el binario incorpore tu codigo fuente al momento de la compilaciòn.
+DEBERÍAS OFUSCARLO sí estas construyendo o distrubuyendo una solución que pretendes comercializar ya que (uno) Es TU PROPIEDAD INTELECTUAL y debes EXTREMAR las medidas de protección y (dos), es totalmente factible incorporar en el binario tu codigo fuente al momento de la compilaciòn. De hecho, este es el comando:
 
-## Si, esta bien. Mi codigo fuente podría incorporarse en el binario pero, solo si yo se lo indico "explicitamente".
+          go build -a -buildmode=pie
 
-¿Estas seguro?.
+## Si, esta bien. Mi código fuente podría incorporarse en el binario pero, solo si yo se lo indico "explícitamente".
+
+¿Estas 200% seguro?.
 
 
 
