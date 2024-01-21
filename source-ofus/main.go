@@ -34,12 +34,11 @@ func main() {
 		return
 	}
 	sourceFolder := os.Args[1]
-	destinationFolder := os.Args[1] + "_ofus"
+	destinationFolder := strings.TrimSuffix(os.Args[1], "/") + "_ofus"
 
 	if len(os.Args) == 3 {
-		destinationFolder = os.Args[2]
-		if sourceFolder == destinationFolder {
-			destinationFolder = os.Args[1] + "_ofus"
+		if sourceFolder != destinationFolder {
+			destinationFolder = os.Args[2]
 		}
 	}
 
