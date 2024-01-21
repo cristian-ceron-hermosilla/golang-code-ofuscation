@@ -33,12 +33,51 @@ func main() {
 		println("       go-source-ofus <source_folder>")
 		return
 	}
-	sourceFolder := os.Args[1]
-	destinationFolder := strings.TrimSuffix(os.Args[1], "/") + "_ofus"
+	sourceFolder := strings.TrimSuffix(os.Args[1], "/") // Quitamos el / al final del path en caso de tenerlo.
+	destinationFolder := sourceFolder + "_ofus"
 
 	if len(os.Args) == 3 {
 		if sourceFolder != destinationFolder {
 			destinationFolder = os.Args[2]
+		}
+	}
+
+	// Obtener la fecha y hora actual para realizar _Backup
+	now := time.Now()
+
+	// Formatear la fecha y hora para crear la ruta de la carpeta
+	backupFolder := homeDir + "/_Backups/" + sourceFolder + "/" + now.Format("2006-01-02/15-04-05")
+
+	// Crear la carpeta
+	err = os.MkdirAll(backupFolder, 0755)
+	if err != nil {
+		fmt.Println("Error al crear la carpeta de /_backup:", err)
+	} else {
+		// Comenzamos a respaldar la carpeta del proyecto con codigo fuente sin ofuscar
+		println("Respaldando [", sourceFolder, "] en [", backupFolder, "]")
+
+		err = filepath.Walk(sourceFolder, func(path string, info fs.FileInfo, err error) error {
+			if err != nil {
+				return err
+			}
+
+			relPath, err := filepath.Rel(sourceFolder, path)
+			if err != nil {
+				return err
+			}
+
+			destPath := filepath.Join(backupFolder, relPath)
+
+			if info.IsDir() {
+				return os.MkdirAll(destPath, info.Mode())
+			}
+
+			// Realizamos copia de respaldo
+			return copyFile(path, destPath)
+		})
+
+		if err != nil {
+			println("Error:", err.Error())
 		}
 	}
 
