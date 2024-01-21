@@ -21,10 +21,6 @@ var names = make(map[string]string)
 var reservedWords []string
 
 func main() {
-	if len(os.Args) != 3 {
-		println("Usage: go run main.go <source_folder> <destination_folder>")
-		return
-	}
 
 	homeDir, err := os.UserHomeDir()
 	if err != nil {
@@ -32,8 +28,20 @@ func main() {
 		return
 	}
 
+	if len(os.Args) < 2 || len(os.Args) > 3 {
+		println("Usage: go-source-ofus <source_folder> <destination_folder>")
+		println("       go-source-ofus <source_folder>")
+		return
+	}
 	sourceFolder := os.Args[1]
-	destinationFolder := os.Args[2]
+	destinationFolder := os.Args[1] + "_ofus"
+
+	if len(os.Args) == 3 {
+		destinationFolder = os.Args[2]
+		if sourceFolder == destinationFolder {
+			destinationFolder = os.Args[1] + "_ofus"
+		}
+	}
 
 	err = filepath.Walk(sourceFolder, func(path string, info fs.FileInfo, err error) error {
 		if err != nil {
