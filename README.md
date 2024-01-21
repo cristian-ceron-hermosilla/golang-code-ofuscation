@@ -16,7 +16,8 @@ Una vez compilado con "_build.sh" (linux/unix/mac) o "_build.bat" (windows), el 
 
      go-source-ofus ./proyecto-de-trajajo <./proyecto-ofuscado>
 
-### Código Fuente 
+#### Código Fuente 
+```go
 var names = make(map[string]string)
 var reservedWords []string
 
@@ -50,7 +51,9 @@ func main() {
 		if info.IsDir() {
 			return os.MkdirAll(destPath, info.Mode())
 		}
-  ### Código Ofuscado
+```
+#### Código Ofuscado
+```go
 var nUlUx_wo_03h_anaJ8ys4_soObC_vgO8_k__ncnHT34TNeFlahgZboFGi1M = make(map[string]string)
 var B_Z__5Q_A6mH9C_706__k_zE1__P_uXr_Zd__oL__n__n_dA_M_4p_Grrwv []string
 
@@ -96,8 +99,9 @@ func main() {
 	if m__BSs6k8evp8i_R71_laaa9Bm6c5_u_3J44X0F_I_IYt9DlbPmmPG_ltf_ != nil {
 		println("Error:", m__BSs6k8evp8i_R71_laaa9Bm6c5_u_3J44X0F_I_IYt9DlbPmmPG_ltf_.Error())
 	}
-
+```
  ¿Agregadable no?!!!  :-) 
+ 
 Si no colocas el 2do. parametro (una carpeta destino) o, por error, colocas la misma carpeta en ambos parametros se generará una carpeta "proyecto-de-trajajo-ofus".
 
 Como asumimos que, si tu proyecto es hiper-ultra secreto, como todo proyecto que pretende comercializarse; Imaginamos que no pretenderas subirlo a Github en un repo privado ni mucho menos publico (yo tampoco lo haría), "go-source-ofus" antes de hacer lo que debe hacer, realizará un respaldo de tus fuentes en la carpeta ./backup/<fecha>/proyecto-de-trabajo/<timestamp>.
