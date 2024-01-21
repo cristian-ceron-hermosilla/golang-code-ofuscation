@@ -16,7 +16,7 @@ Una vez compilado con "_build.sh" (linux/unix/mac) o "_build.bat" (windows), el 
 
      go-source-ofus ./proyecto-de-trajajo <./proyecto-ofuscado>
 
-#### Código Fuente 
+#### Ejemplo de Código Fuente Normal 
 ```go
 var names = make(map[string]string)
 var reservedWords []string
@@ -52,7 +52,7 @@ func main() {
 			return os.MkdirAll(destPath, info.Mode())
 		}
 ```
-#### Código Ofuscado
+#### Luego de la Ofuscación
 ```go
 var nUlUx_wo_03h_anaJ8ys4_soObC_vgO8_k__ncnHT34TNeFlahgZboFGi1M = make(map[string]string)
 var B_Z__5Q_A6mH9C_706__k_zE1__P_uXr_Zd__oL__n__n_dA_M_4p_Grrwv []string
